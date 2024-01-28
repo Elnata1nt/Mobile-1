@@ -29,11 +29,10 @@ class MainActivity : AppCompatActivity() {
         val abrirNovaTela = findViewById<Button>(R.id.btnNovaTela)
 
 
-        // botao que exibe as informaçoes
+        // Botao que exibe as informaçoes
         btnEnviar.setOnClickListener {
 
-           // txtResult.text = "Quer Namorar Comigo?"
-
+           // Verificar se existe algo digitado no campo
             if (inputName.isBlank()) {
                 edText.error = "Esse campo não pode estar vazio"
             } else {
@@ -46,7 +45,18 @@ class MainActivity : AppCompatActivity() {
         // botao para abrir a nova tela
         abrirNovaTela.setOnClickListener {
 
-            Intent(this, Result::class.java)
+            // Conversao da inf p/ string
+            val nomeDigitado = edText.text.toString()
+
+            // Criaçao da intensao
+            val abrirNovaTela = Intent(this, Result::class.java)
+
+            // Envio da inf para a outra act
+            abrirNovaTela.putExtra("RESULTADO", nomeDigitado )
+
+            // Execuçao da intençao
+            startActivity(abrirNovaTela)
+
 
         }
     }
